@@ -23,7 +23,7 @@ public class CommonPage extends Utils {
     private By _addedToSiteForRentDate = By.xpath("//div[@id=\"lettingInformation\"]/table/tbody/tr/td[2]");
 
     public String sortNewestListed = loadProp.getProperty("sortDropDown");
-    public String addedToSiteForSaleDate, actualAddedToSiteForRentDate;
+    public String addedToSiteForSaleDate, actualAddedToSiteForRentDate, yesterdayDate, dayb4YesterdayDate;
     public boolean actualAddedToSiteForRentDateBoolean = false;
 
 
@@ -56,21 +56,21 @@ public class CommonPage extends Utils {
         }
 
         List<String> list = new ArrayList<String>();
-        System.out.println("Actual added date "+actualAddedToSiteForRentDate);
+//        System.out.println("Actual added date "+actualAddedToSiteForRentDate);
         list.add(actualAddedToSiteForRentDate); //15 February 2018
 
         String todayDate = getTodayDate();
-        System.out.println("today date "+todayDate);//16 February 2018
+//        System.out.println("today date "+todayDate);//16 February 2018
 
         try {
             Calendar c = Calendar.getInstance();
             c.setTime(dateFormat.parse(todayDate));
             c.add(Calendar.DATE, -1);  // number of days to minus
-            String yesterdayDate = dateFormat.format(c.getTime());
+            yesterdayDate = dateFormat.format(c.getTime());
             c.add(Calendar.DATE, -1);
-            String dayb4YesterdayDate = dateFormat.format(c.getTime());
-            System.out.println("yesterday Date " + yesterdayDate);
-            System.out.println("day befor yesterday date " + dayb4YesterdayDate);
+            dayb4YesterdayDate = dateFormat.format(c.getTime());
+//            System.out.println("yesterday Date " + yesterdayDate);
+//            System.out.println("day befor yesterday date " + dayb4YesterdayDate);
             list.add(yesterdayDate); //15 February 2018
             list.add(dayb4YesterdayDate); //14 February 2018
         }
@@ -78,8 +78,8 @@ public class CommonPage extends Utils {
 
 
         for (int i =0; i<list.size(); i++){
-            System.out.println("===== "+list.get(i));
-            if (list.get(i).contains(todayDate)){
+//            System.out.println("===== "+list.get(i));
+            if (list.get(i).contains(todayDate) || list.get(i).contains(yesterdayDate) || list.get(i).contains(dayb4YesterdayDate)){
                 actualAddedToSiteForRentDateBoolean = true;
                 break;
             }

@@ -194,7 +194,7 @@ public class TestSuite extends BaseTest {
         //then we are asserting those date with rightmove's date
 
         commonPage.getAddedToRightMoveDateForRent();
-        System.out.println(commonPage.actualAddedToSiteForRentDateBoolean);
+//        System.out.println(commonPage.actualAddedToSiteForRentDateBoolean);
         Assert.assertTrue(commonPage.actualAddedToSiteForRentDateBoolean, "property is not new. Not added in last three days");
         logger.log(LogStatus.PASS, "Property is newly added to site is verified");
 
